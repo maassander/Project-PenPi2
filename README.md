@@ -4,10 +4,11 @@ WEP/WPA cracking with the raspberry Pi 2 Model B
 Requirements:
   - Raspberry Pi
   - Kali ARM OS
+  - Wireless Wifi adapter (Cisco WUSB600N)
   
-  apt-get install
-    wifite
-    screen
+  apt-get install wifite
+  apt-get install screen
+  apt-get install nmap
 
 Install:
   - Copy 'mailupdate.sh' to /root/Documents'
