@@ -6,8 +6,8 @@ Requirements:
   - Kali ARM OS
   - Wireless Wifi adapter (Cisco WUSB600N)
   
-  apt-get install wifite
-  apt-get install screen
+  apt-get install wifite /
+  apt-get install screen /
   apt-get install nmap
 
 Install:
