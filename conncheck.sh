@@ -2,7 +2,6 @@
 
 lines=$(ls -l /etc/NetworkManager/system-connections/ | wc -l)
 clines=$(( $lines - 1 ))
-echo $clines
 for i in {1..$clines}
 do
 	check=$(nmcli --terse --fields STATE dev status | grep connected)
@@ -10,18 +9,22 @@ do
 	then
 		wget –q --tries=10 --timeout=20 --spider http://www.google.be
 		if [[ $? -eq0 ]];
-			then
+		then
 			bash /root/Documents/mailupdate.sh
 			echo “$(date +%T) dropbox update verzonden >> /tmp/startscreen.log
-		else
-			ifconfig wlan0 down
+		else	
 			ssid=$(iwgetid -r)
-			echo “$(date +%T) geen internetverbinding met $ssid” >> /tmp/startscreen..
-			loc=$(find /etc/NetworkManager/system-connections/ -name ‘$ssid’)
+			echo “$(date +%T) geen internetverbinding met $ssid” >> /tmp/startscreen.l
+			loc=$(find /etc/NetworkManager/system-connections/ -name $ssid)
 			rm $loc
 			echo “$(date +%T) $loc verwijderd” >> /tmp/startscreen.log
+			ifconfig wlan0 down
+			sleep 5s
 			service network-manager restart
+			sleep 5s
 			ifconfig wlan0 up
+			sleep 5s
 		fi
 	fi
 done
+
